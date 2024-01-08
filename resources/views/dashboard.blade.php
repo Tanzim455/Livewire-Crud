@@ -17,6 +17,11 @@
                     
 
                     <livewire:counter />
+                    <nav>
+                        <a href="/" wire:navigate>Dashboard</a>
+                        <a href="{{route('dashboard')}}" wire:navigate>Dashboard</a>
+                        <a href="/counter" wire:navigate>Counter</a>
+                    </nav>
                 </div>
             </div>
         </div>

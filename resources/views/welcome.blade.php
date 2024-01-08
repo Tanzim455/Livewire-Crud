@@ -1,4 +1,4 @@
 <x-header title="Home Page">
    
-    Hello world
+   <livewire:counter />
 </x-header>
