@@ -27,10 +27,10 @@ class CreatePost extends Component
        
     }
  
-    protected function rules(): array
-    {
-        return (new PostRequest())->rules();
-    }
+    // protected function rules(): array
+    // {
+    //     return (new PostRequest())->rules();
+    // }
 
     public function render():View
     {
