@@ -1,13 +1,32 @@
+
+      
+
+
 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     <div class="p-6 text-gray-900">
-        @if (session()->has('message'))
-        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-            {{ session('message') }}
-          </div
-        @endif
+        <div>
+            @if (session()->has('message'))
+                <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400">
+                    {{ session('message') }}
+                </div>
+            @endif
+        </div>
+    
        
-        {{-- <form wire:submit.prevent="store" class="flex items-start space-x-3">
-            @csrf
+    {{-- <div x-data="{ like: true }">
+        <svg @click="like = !like" xmlns="http://www.w3.org/2000/svg" :fill="like ? 'red' : 'white'" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+        </svg>
+    </div> --}}
+    <button type="button" x-on:click="$wire.likeStatus()">
+        <svg @click="like = !like" xmlns="http://www.w3.org/2000/svg" fill="{{$likeStats ? 'red':'white'}}" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+        </svg>
+    </button>
+    
+  
+        <form wire:submit.prevent="store" class="flex items-start space-x-3">
+            
             <div class="grow">
                 <label for="title" class="sr-only">Book title</label>
                 <input type="text" id="title" wire:model="title" placeholder="Book title" class="w-full border border-slate-300 rounded-lg">
@@ -34,22 +53,5 @@
                 </span>
             </button>
         </form>
-          {{$this->likeStats}}
-        @if ($this->likeStats)
-            The status is liked
-        @endif --}}
-
-        <div x-data="{ likes: {{Js::from($likeStats)}},changeLike(){
-            this.likes =! this.likes
-        } }">
-        <button wire:click="likeStatus()">Like</button>
-        <template x-if="likes">
-            <div>It is Liked</div>
-        </template>
-        <div x-text="likes"></div>
-             <button @click="changeLike()">Check Likes</button>
-          
-        </div>
-        
-    </div>
+       
 </div>

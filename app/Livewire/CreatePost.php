@@ -8,22 +8,24 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
-use phpDocumentor\Reflection\Types\Boolean;
+use Livewire\WithPagination;
+
 
 class CreatePost extends Component
 {
-    public $likeStats=true;
+    use WithPagination;
+    public $likeStats=false;
     public $title;
     public $description;
     
-    public function likeStatus()
+    public function likeStatus():void
     {
         $this->likeStats =! $this->likeStats;
         
         
         
     }
-
+   
     
     public function store()
     {
@@ -39,13 +41,11 @@ class CreatePost extends Component
        
     }
  
-    // protected function rules(): array
-    // {
-    //     return (new PostRequest())->rules();
-    // }
+  
 
     public function render():View
     {
+        
         return view('livewire.create-post');
     }
 }
