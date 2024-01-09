@@ -1,6 +1,12 @@
 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     <div class="p-6 text-gray-900">
-        <form wire:submit.prevent="store" class="flex items-start space-x-3">
+        @if (session()->has('message'))
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+            {{ session('message') }}
+          </div
+        @endif
+       
+        {{-- <form wire:submit.prevent="store" class="flex items-start space-x-3">
             @csrf
             <div class="grow">
                 <label for="title" class="sr-only">Book title</label>
@@ -28,11 +34,22 @@
                 </span>
             </button>
         </form>
+          {{$this->likeStats}}
+        @if ($this->likeStats)
+            The status is liked
+        @endif --}}
 
-        {{-- <button wire:click="example" class="disabled:opacity-50" wire:loading.attr="disabled">Click me</button> --}}
-
-        {{-- <div wire:loading.delay.long>
-            Loading
-        </div> --}}
+        <div x-data="{ likes: {{Js::from($likeStats)}},changeLike(){
+            this.likes =! this.likes
+        } }">
+        <button wire:click="likeStatus()">Like</button>
+        <template x-if="likes">
+            <div>It is Liked</div>
+        </template>
+        <div x-text="likes"></div>
+             <button @click="changeLike()">Check Likes</button>
+          
+        </div>
+        
     </div>
 </div>

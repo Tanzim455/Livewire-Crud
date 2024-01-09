@@ -19,7 +19,7 @@ class Post extends Model
     protected static function booted()
 {
     static::creating(function ($post) {
-        $post->user_id = auth()->user()->id;
+        $post->user_id = auth()->user()?->id;
     });
 }
 }
