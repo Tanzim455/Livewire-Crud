@@ -14,17 +14,11 @@ use Livewire\WithPagination;
 class CreatePost extends Component
 {
     use WithPagination;
-    public $likeStats=false;
+    
     public $title;
     public $description;
     
-    public function likeStatus():void
-    {
-        $this->likeStats =! $this->likeStats;
-        
-        
-        
-    }
+    
    
     
     public function store()

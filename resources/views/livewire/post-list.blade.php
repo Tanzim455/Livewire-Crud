@@ -1,50 +1,41 @@
+
 <div>
-    <div class="min-w-full align-middle">
-        <table class="min-w-full border divide-y divide-gray-200">
-            <thead>
-            <tr>
-                <th class="px-6 py-3 text-left bg-gray-50">
-                    <span class="text-xs font-medium leading-4 tracking-wider text-gray-500 uppercase">Name</span>
-                </th>
-                <th class="px-6 py-3 text-left bg-gray-50">
-                    <span class="text-xs font-medium leading-4 tracking-wider text-gray-500 uppercase">Description</span>
-                </th>
-                <th class="px-6 py-3 text-left bg-gray-50">
-                </th>
-            </tr>
-            </thead>
-    <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-        @forelse($posts as $post)
-            <tr class="bg-white">
-                <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                    {{ $post->title }}
-                </td>
-                <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                    {{ $post->description }}
-                </td>
-                <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                    {{-- <button wire:confirm="Are you sure?" wire:click="delete({{ $post->id }})"
-                        class="ml-2 text-indigo-600 hover:text-indigo-900">
-                        Delete
-                    </button --}}
-                    <button
-    type="button"
+    @foreach ($posts as $post)
+    <div class="p-6">
+        <h5
+          class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+          {{$post->title}}
+        </h5>
+        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+            {{$post->description}}
+        </p>
+        <div class="flex ">
+            <div>
+                <button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" type="button" x-on:click="$wire.delete('{{ $post->id }}')">
+                    Delete
+                 </button>
+            </div>
+            <button wire:click="likeStatus('{{ $post->id }}')" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+            </button>
+            
+        </div>
+        
+      </div>
+    @endforeach
     
-    x-on:click="$wire.delete('{{ $post->id }}')"
+    
+</div>
+
+
+</div>
+
+{{-- <button
+type="button"
+
+x-on:click="$wire.delete('{{ $post->id }}')"
 >
-              Delete
-                    </button>
-                </td>
-                
-            </tr>
-        @empty
-            <tr class="bg-white">
-                <td colspan="3" class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                    No products found.
-                </td>
-            </tr>
-        @endforelse
-    </tbody>
-</table>
-</div>
-</div>
+          Delete
+                </button> --}}
